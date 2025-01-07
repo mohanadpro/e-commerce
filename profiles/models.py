@@ -10,12 +10,12 @@ class Profile(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_profile_iy5ppe'
     )
-    street = models.CharField(max_length=75)
-    street_number = models.IntegerField()
-    zipcode = models.CharField(max_length=75)
-    city = models.CharField(max_length=75)
-    state = models.CharField(max_length=75)
-    country = models.CharField(max_length=75)
+    street = models.CharField(max_length=75, blank=True)
+    street_number = models.IntegerField(default=0)
+    zipcode = models.CharField(max_length=75, blank=True)
+    city = models.CharField(max_length=75, blank=True)
+    state = models.CharField(max_length=75, blank=True)
+    country = models.CharField(max_length=75, blank=True)
     
     class Meta:
         ordering = ['-created_at']

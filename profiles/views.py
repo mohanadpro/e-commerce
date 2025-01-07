@@ -7,7 +7,7 @@ from e_commerce.permissions import IsOwnerOrReadOnly
 class ProfileList(generics.ListCreateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ProfileSerializer
-
+    queryset = Profile.objects.all()
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
