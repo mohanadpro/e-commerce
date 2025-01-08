@@ -19,7 +19,7 @@ from django.urls import path, include
 from e_commerce.views import logout_route
 from .views import root_route
 urlpatterns = [
-    path('/', admin.site.urls),
+    path('', root_route),
     path('admin/', admin.site.urls),
     path('profiles/', include('profiles.urls')),
     path('api-auth/', include('rest_framework.urls')),
