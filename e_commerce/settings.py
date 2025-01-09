@@ -44,6 +44,7 @@ REST_FRAMEWORK = {
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGINS = [
          r"^https:\/\/.*\.codeinstitute-ide\.net$",
+    ]
 
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
