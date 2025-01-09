@@ -71,8 +71,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'ebuy-d1c37ed2b301.herokuapp.com/',
-    '3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/',]
+    'ebuy-d1c37ed2b301.herokuapp.com',
+    '3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net',]
 
 
 # Application definition
