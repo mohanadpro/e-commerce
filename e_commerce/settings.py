@@ -57,7 +57,7 @@ CORS_ALLOW_CREDENTIALS = True
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'e_commerce.serializers.CurrentUserSerializer'
 }
 
 # SECURITY WARNING: don't run with debug turned on in production!
