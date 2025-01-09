@@ -71,7 +71,11 @@ REST_AUTH_SERIALIZERS = {
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","ebuy-d1c37ed2b301.herokuapp.com", os.environ.get('ALLOWED_HOST')]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "ebuy-d1c37ed2b301.herokuapp.com",
+    "3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net",
+    os.environ.get('ALLOWED_HOST')]
 
 
 # Application definition
@@ -111,6 +115,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'e_commerce.urls'
 
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net"
+    ]
+
 
 TEMPLATES = [
     {
