@@ -78,6 +78,15 @@ ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST')]
 
 
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https:\/\/.*\.codeinstitute-ide\.net$",
+    ]
+
 # Application definition
 
 INSTALLED_APPS = [
