@@ -34,7 +34,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
         'rest_framework.authentication.SessionAuthentication'
         if 'DEV' in os.environ
-        else  'rest_framework.authentication.TokenAuthentication'
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
@@ -113,7 +113,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/"
+    "https://mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/",
+    "https://3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/"
     ]
 
 if 'CLIENT_ORIGIN' in os.environ:
