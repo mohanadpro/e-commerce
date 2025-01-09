@@ -50,6 +50,10 @@ if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')]
 
+CSRF_TRUSTED_ORIGINS = [
+    "83.135.14.46:3000"
+    ]
+
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = 'my-app-auth'
