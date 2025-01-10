@@ -161,7 +161,7 @@ if 'DEV' in os.environ:
          }
      }
 else:
-     DATABASE_URL = 'postgresql://neondb_owner:LzibJtkjy69W@ep-twilight-voice-a2hn3qlm.eu-central-1.aws.neon.tech/chief_chef_lance_716291'
+     DATABASE_URL = os.environ.get('DATABASE_URL')
      DATABASES = {
          'default': dj_database_url.config(default=DATABASE_URL)
      }
