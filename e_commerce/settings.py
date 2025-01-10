@@ -63,6 +63,7 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
+    'ebuy-d1c37ed2b301.herokuapp.com'
     'localhost',
 ]
 
