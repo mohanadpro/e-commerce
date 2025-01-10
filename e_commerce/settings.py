@@ -63,25 +63,28 @@ DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     'ebuy-d1c37ed2b301.herokuapp.com',
-    '3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net'
+    '3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net',
+    '8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net',
     'localhost',
 ]
 
+# if 'CLIENT_ORIGIN' in os.environ:
+#     print('CLIENT_ORIGIN')
+
+#     CORS_ALLOWED_ORIGINS = [
+#         os.environ.get('CLIENT_ORIGIN')
+#     ]
+# else:
+#     CORS_ALLOWED_ORIGIN_REGEXES = [
+#         r"^https:\/\/.*\.codeinstitute-ide\.net$",
+#     ]
+
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')
     ]
-
-if 'CLIENT_ORIGIN' in os.environ:
-    print('CLIENT_ORIGIN')
-
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https:\/\/.*\.codeinstitute-ide\.net$",
-    ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$",]
 CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
@@ -138,7 +141,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'e_commerce.wsgi.application'
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net"
+    ]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
