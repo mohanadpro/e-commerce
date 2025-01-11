@@ -16,6 +16,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=75, blank=True)
     state = models.CharField(max_length=75, blank=True)
     country = models.CharField(max_length=75, blank=True)
+    email = models.EmailField(blank=True)
     
     class Meta:
         ordering = ['-created_at']

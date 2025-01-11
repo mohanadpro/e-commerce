@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = [
             'id', 'owner', 'created_at', 'updated_at',
-            'is_owner', 'name', 'image',
+            'is_owner', 'name', 'image', 'email'
             'street', 'street_number',
-            'zipcode', 'city', 'state', 'country'
+            'zipcode', 'city', 'state', 'country',
         ]
