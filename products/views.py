@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Product
 from .serializers import ProductSerializer
 from e_commerce.permissions import IsOwnerOrReadOnly
@@ -7,7 +8,12 @@ from e_commerce.permissions import IsOwnerOrReadOnly
 class ProductList(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
+    filter_backends = [
+        DjangoFilterBackend
+    ]
+    filterset_fields = [
+        'category'
+    ]
     queryset = Product.objects.all()
 
 
