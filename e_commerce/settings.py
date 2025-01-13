@@ -69,17 +69,6 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
-# if 'CLIENT_ORIGIN' in os.environ:
-#     print('CLIENT_ORIGIN')
-
-#     CORS_ALLOWED_ORIGINS = [
-#         os.environ.get('CLIENT_ORIGIN')
-#     ]
-# else:
-#     CORS_ALLOWED_ORIGIN_REGEXES = [
-#         r"^https:\/\/.*\.codeinstitute-ide\.net$",
-#     ]
-
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')
@@ -111,7 +100,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'profiles',
     'categories',
-    'products'
+    'products',
+    'orders'
 ]
 SITE_ID = 1
 MIDDLEWARE = [
