@@ -11,10 +11,7 @@ class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
 
     def perform_create(self, serializer):
-        cart = self.request.POST.get('cart')
-        
-
-        # order = serializer.save()
+        order = serializer.save()
 
 class OrderDetails(generics.RetrieveAPIView):
     serializer_class = OrderDetailsSerializer
