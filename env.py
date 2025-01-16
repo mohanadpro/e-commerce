@@ -6,3 +6,4 @@ os.environ["PAYPAL_CLIENT_ID"] = "AS8LiFg0QvrO5ZEnJO_NqpJHOLJ9CBj9DYFKUgg4iz_cYT
 os.environ["PAYPAL_CLIENT_SECRET"] = "EOys07oj_Z_8kzlQAaiy43oXziyCEhMRpsA0KFFerw6k7mc8VTtvYTqdWyXeh8HqCrAd0Y2TkxrK_o2k"
 os.environ["PAYPAL_WEBHOOK_ID"] = "6DP78038NV5980435"
 os.environ["CLIENT_ORIGIN_DEV"] = "1"
+os.environ['DEBUG'] = '1'
