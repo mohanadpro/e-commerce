@@ -5,10 +5,12 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = [
             'id', 'created_at',
-            'customer', 'total_price'
+            'customer', 'total_price',
+            'delivery_place'
             ]
 
 class OrderDetailsSerializer(serializers.ModelSerializer):
+    product = serializers.CharField(source='product.name')
     class Meta:
         model = Order_Product
         fields = [
