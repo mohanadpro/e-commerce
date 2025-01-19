@@ -10,11 +10,12 @@ class OrderSerializer(serializers.ModelSerializer):
             ]
 
 class OrderDetailsSerializer(serializers.ModelSerializer):
-    product = serializers.CharField(source='product.name')
+    product_name = serializers.ReadOnlyField(source='product.name')
     class Meta:
         model = Order_Product
         fields = [
             'id', 'product',
             'order', 'count',
-            'price', 'total_price'
+            'price', 'total_price',
+            'product_name'
         ]
