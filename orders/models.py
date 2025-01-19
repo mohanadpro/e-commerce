@@ -9,6 +9,9 @@ class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_place = models.CharField(max_length=250, blank=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
 class Order_Product(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
