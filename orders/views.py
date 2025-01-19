@@ -5,6 +5,101 @@ from .models import Order_Product
 from .serializers import OrderSerializer, OrderDetailsSerializer
 from e_commerce.permissions import IsOwnerOrReadOnly
 import json
+import env
+
+import os
+from email.message import EmailMessage
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import ssl
+import smtplib
+
+def sendEmail(body, email_receiver):
+    email_sender = 'ebuy.13.1993@gmail.com'
+    email_password = os.environ.get('EMAIL_PASSWORD')
+    email_receiver = email_receiver
+    subject = "confirmation of your order"
+    part2 = MIMEText(body, 'html')
+
+    em = MIMEMultipart('alternative')
+    em['From'] = email_sender
+    em['To'] = email_receiver
+    em['Subject'] = subject
+    em.attach(part2)
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+        smtp.login(email_sender, email_password)
+        smtp.sendmail(email_sender, email_receiver, em.as_string())
+
+
+def create_email_body(delivery_place, user, order_id, total_price, products):
+    body = """
+    <html>
+    <head>
+        <style>
+            table, th, td{
+                border: 1px solid black;
+            }
+            th,td{
+                padding: 3px 6px;
+            }
+            table
+            {
+                border-collapse:collapse;        
+            }
+            td{
+                text-align: center;
+            }
+            th{
+                background-color:#f44804;
+                color:white;
+            }
+    </style>
+    </head>
+    <body style="font-size:15px">
+    """
+    body+=f"""<p>Hello Dear {user}! <br>
+    Thanks for your order <br>
+    The Order Number is : {order_id} <br>
+    Total Price : {total_price} <br>
+    Your order will be delivered to the address {delivery_place}
+    You can see Details in the below table
+    </p>
+    <table>
+    <thead>
+        <th> Item</th>
+        <th> Number</th>
+        <th> Price</th>
+        <th> Total Price</th>
+    </thead>
+    <tbody>
+    """
+    for prod in products:
+        body +=f"""
+            <tr> 
+                <td> {prod['name']} </td>
+                <td> {prod['count']} </td>
+                <td> {prod['price']} </td>
+                <td> {prod['total_price']} </td>
+            </tr>
+        """
+    body+="""
+    </tbody>
+    </table>
+    <p>You will receive another email with the tracking number after we send your order<br><br>
+    If you have another problem with the order<br><br>
+    Please don't hesitate to contact us on the below email <br>
+    </p>
+    <p>
+    With special regards <br> 
+    EBuy Customer Service <br>
+    ebuy-customerservice@gmail.com
+    </p>
+    </body>
+    </html>
+    """
+    return body
+
 # Create your views here.
 class OrderList(generics.ListCreateAPIView):
 
@@ -21,7 +116,13 @@ class OrderList(generics.ListCreateAPIView):
         if serializer.is_valid():
             order = serializer.save()
             cart = self.request.POST.get('cart')
-            delivery_place = self.request.POST.get('delivery_place')
+            total_price = self.request.POST.get('total_price')
+            delivery_place_temp = json.loads(self.request.POST.get('delivery_place'))
+            delivery_place = f"""
+                        {delivery_place_temp['name']} <br>
+                         {delivery_place_temp['street']} {delivery_place_temp['street_number']} <br>
+                         {delivery_place_temp['city']} , {delivery_place_temp['zipcode']} <br>
+                    """ 
             products = json.loads(cart)
             for prod in products:
                 try:
@@ -31,10 +132,11 @@ class OrderList(generics.ListCreateAPIView):
                         saved_product.save()
                     else:
                         print('serializer is not valid')
-                except ValidationError as e:
-                    print(str(e))
                 except Exception as ex:
                     print(str(ex))
+            if delivery_place_temp['email']!="":
+                body = create_email_body(delivery_place, delivery_place_temp['name'], order.id, total_price, products)
+                sendEmail(body, delivery_place_temp['email'])
 
 class OrderDetails(generics.ListCreateAPIView):
     serializer_class = OrderDetailsSerializer
