@@ -32,8 +32,10 @@ pyOpenSSL==25.0.0
 python3-openid==3.2.0
 pytz==2024.2
 requests-oauthlib==2.0.0
+simplejson==3.19.3
 SQLAlchemy==2.0.36
 sqlparse==0.5.2
+stripe==11.4.1
 tzdata==2024.2
 urllib3==1.26.20
 Werkzeug==3.1.3
