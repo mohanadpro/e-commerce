@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from .models import Order
 from .models import Order_Product
 from .serializers import OrderSerializer, OrderDetailsSerializer
-from e_commerce.permissions import IsOwnerOrReadOnly
+from e_commerce.permissions import IsOwner, IsOwnerOrders
 import json
 import env
 
@@ -102,10 +102,8 @@ def create_email_body(delivery_place, user, order_id, total_price, products):
 
 # Create your views here.
 class OrderList(generics.ListCreateAPIView):
-
-    # permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwner]
     serializer_class = OrderSerializer
-
 
     def list(self, request):
         queryset = Order.objects.filter(customer=self.request.user)
@@ -127,6 +125,7 @@ class OrderList(generics.ListCreateAPIView):
             for prod in products:
                 try:
                     prod['order'] = order.id
+                    prod['customer'] = self.request.user.id
                     saved_product = OrderDetailsSerializer(data=prod)
                     if saved_product.is_valid():
                         saved_product.save()
@@ -140,7 +139,7 @@ class OrderList(generics.ListCreateAPIView):
 
 class OrderDetails(generics.ListCreateAPIView):
     serializer_class = OrderDetailsSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrders]
 
     def get(self, request, *args, **kwargs):
         order_id = self.kwargs['pk']
