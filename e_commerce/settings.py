@@ -32,6 +32,9 @@ REST_FRAMEWORK = {
         if 'DEV' in os.environ
         else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 8,
@@ -137,7 +140,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'e_commerce.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/"
+    "https://3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/",
+    "https://8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net"
     ]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
