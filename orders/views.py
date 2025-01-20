@@ -5,7 +5,6 @@ from .models import Order_Product
 from .serializers import OrderSerializer, OrderDetailsSerializer
 from e_commerce.permissions import IsOwner, IsOwnerOrders
 import json
-import env
 
 import os
 from email.message import EmailMessage
