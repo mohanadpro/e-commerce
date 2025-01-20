@@ -101,7 +101,8 @@ INSTALLED_APPS = [
     'profiles',
     'categories',
     'products',
-    'orders'
+    'orders',
+    'payment'
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -136,7 +137,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'e_commerce.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net"
+    "https://3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/"
     ]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
