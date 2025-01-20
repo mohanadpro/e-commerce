@@ -17,5 +17,5 @@ class OrderDetailsSerializer(serializers.ModelSerializer):
             'id', 'product',
             'order', 'count',
             'price', 'total_price',
-            'product_name'
+            'product_name', 'customer'
         ]
