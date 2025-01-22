@@ -35,12 +35,18 @@ def create_payment_charge(tokenid, amount):
 class Payment(generics.ListCreateAPIView):
     serializer_class = CardSerializer
     def post(self, request):
-        card_number = request.POST.get('card_number')
-        exp_month = request.POST.get('exp_month')
-        exp_year = request.POST.get('exp_year')
-        cvv = request.POST.get('cvv')
-        amount = float(request.POST.get('amount'))
-        token_id = generate_card_token(card_number, exp_month, exp_year, cvv)
-        is_paid_done = create_payment_charge(token_id, amount)
-        data = {'message': 'Payment has been done successfully... '}
-        return Response(data, status=200)
+        try:
+            card_number = request.POST.get('card_number')
+            exp_month = request.POST.get('exp_month')
+            exp_year = request.POST.get('exp_year')
+            cvv = request.POST.get('cvv')
+            amount = float(request.POST.get('amount'))
+            token_id = generate_card_token(card_number, exp_month, exp_year, cvv)
+            is_paid_done = create_payment_charge(token_id, amount)
+            data = {'message': 'Payment has been done successfully... '}
+            return Response(data, status=200)
+        except Exception as e:
+            print(e)
+            data = {'message': 'Payment has been done successfully... '}
+            return Response(data, status=400)
+
