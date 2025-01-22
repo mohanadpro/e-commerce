@@ -105,9 +105,18 @@ class OrderList(generics.ListCreateAPIView):
     serializer_class = OrderSerializer
 
     def list(self, request):
-        queryset = Order.objects.filter(customer=self.request.user)
-        serializer = OrderSerializer(queryset, many=True)
-        return Response(serializer.data)
+        try:
+            print(self.request.user)
+            if self.request.user == 'AnonymousUser':
+                data = {'message': 'Payment has been done successfully... '}
+                return Response(data, status=401)
+            else:
+                queryset = Order.objects.filter(customer=self.request.user)
+                serializer = OrderSerializer(queryset, many=True)
+                return Response(serializer.data)
+        except Exception as e:
+            data = {'message': 'error exception '}
+            return Response(data, status=401)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
