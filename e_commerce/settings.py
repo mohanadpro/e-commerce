@@ -75,7 +75,7 @@ ALLOWED_HOSTS = [
         # os.environ.get('CLIENT_ORIGIN')
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        "https://mohanadpro.github.io/e-commerce-frontend/"
+        "https://mohanadpro.github.io/e-commerce-frontend"
     ]
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.codeinstitute-ide\.net$",]
