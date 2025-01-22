@@ -66,6 +66,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
+    'https://ebuy-5f55963d6018.herokuapp.com',
     'ebuy-d1c37ed2b301.herokuapp.com',
     '3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net',
     '8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net',
