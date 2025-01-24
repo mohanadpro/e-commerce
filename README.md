@@ -70,3 +70,6 @@ An e-commerce backend is a backend system that to buy products over the internet
     * The fields are: product - order - count - price - total_price  
 ---
 
+### Database Scheme
+[Database Scheme](documentation/Entity%20Diagram/E-commerce.png)
+
