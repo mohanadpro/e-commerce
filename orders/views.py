@@ -99,6 +99,7 @@ def create_email_body(delivery_place, user, order_id, total_price, products):
     """
     return body
 
+
 # Create your views here.
 class OrderList(generics.ListCreateAPIView):
     permission_classes = [IsOwner]

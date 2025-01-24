@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Order, Order_Product
+
+
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
@@ -9,8 +11,10 @@ class OrderSerializer(serializers.ModelSerializer):
             'delivery_place'
             ]
 
+
 class OrderDetailsSerializer(serializers.ModelSerializer):
     product_name = serializers.ReadOnlyField(source='product.name')
+
     class Meta:
         model = Order_Product
         fields = [
