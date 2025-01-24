@@ -118,6 +118,119 @@ The website is using [Cloudinary](https://cloudinary.com/)
     10. Click Deploy Branch
     11. Click View to launch the application inside a web page.
 
+## Testing
+
+### Validation Testing
+<details>
+<summary> Category Model
+</summary>
+
+![Category Model](documentation/validation/category_model.png)
+</details>
+
+<details>
+<summary> Category Serializer
+</summary>
+
+![Category Serializer](documentation/validation/category_serializer.png)
+</details>
+
+
+
+<details>
+<summary> Category View
+</summary>
+
+![Category View](documentation/validation/category_view.png)
+</details>
+ 
+<details>
+<summary>  Order Models
+</summary>
+
+![Order Models](documentation/validation/order_models.png)
+</details>
+
+<details>
+<summary>  Order Serializer
+</summary>
+
+![Order Serializer](documentation/validation/order_serializer.png)
+</details>
+
+
+<details>
+<summary>  Order Urls
+</summary>
+
+![Order Urls](documentation/validation/order_urls.png)
+</details>
+
+<details>
+<summary>  Order Views
+</summary>
+
+![Order Views](documentation/validation/order_views.png)
+</details>
+
+<details>
+<summary>  Product Models
+</summary>
+
+![Product Models](documentation/validation/product_models.png)
+</details>
+
+<details>
+<summary>  Product Serializer
+</summary>
+
+![Product Serializer](documentation/validation/Product_serializer.png)
+</details>
+
+<details>
+<summary>  Product Urls
+</summary>
+
+![Product Urls](documentation/validation/products_urls.png)
+</details>
+
+<details>
+<summary>  Product Views
+</summary>
+
+![Product Views](documentation/validation/product_views.png)
+</details>
+
+<details>
+<summary>  Profile Models
+</summary>
+
+![Profile Models](documentation/validation/profile_models.png)
+</details>
+
+<details>
+<summary>  Profile Seiralizer
+</summary>
+
+![Profile Seiralizer](documentation/validation/profile_serializer.png)
+</details>
+
+
+<details>
+<summary>  Profile Views
+</summary>
+
+![Profile Views](documentation/validation/profile_views.png)
+</details>
+
+
+<details>
+<summary>  Profile Urls
+</summary>
+
+![Profile Urls](documentation/validation/urls.py.png)
+</details>
+
 ## References
 ### Docs
 
