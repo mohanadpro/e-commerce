@@ -117,3 +117,18 @@ The website is using [Cloudinary](https://cloudinary.com/)
     9. Add Config Vars
     10. Click Deploy Branch
     11. Click View to launch the application inside a web page.
+
+## References
+### Docs
+
+* [Stack Overflow](https://stackoverflow.com/)
+* [Code Institute](https://learn.codeinstitute.net/dashboard)
+* [Django docs](https://docs.djangoproject.com/en/4.2/releases/3.2/)
+* [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)
+* [Cloudinary](https://cloudinary.com/documentation/diagnosing_error_codes_tutorial)
+* [Google](https://www.google.com/)
+
+### Acknowledgments
+
+* I would like to thank my mentor for support and feedback throughout this project, Mitko Bachvarov.
+* I would also like to extend my appreciation to code institue tutors for their helping
