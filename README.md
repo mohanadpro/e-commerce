@@ -44,3 +44,29 @@ An e-commerce backend is a backend system that to buy products over the internet
 * [Heroku](https://www.heroku.com/) - Used as the cloud-based platform to deploy the site.
 * [Git](https://git-scm.com/) - Version control
 * [CI Python Linter](https://pep8ci.herokuapp.com/#) - Used to validate Python
+
+### Data Models
+
+1. AllAuth User Model
+    * Django Allauth, the User model is the default user model provided by the Django authentication system
+    * The User entity has a one-to-one relationship with the Profile entity. This means every User has a profile
+2. Profile Model
+    * Has additional information about the customer in addition to one-to-one relationship with the AllAuth User Model 
+    * created_at - updated_at - name - image - street - street_number - zipcode - city - state -country - email
+3. Product Model
+    * It describes the product and has many-to-one relationship with the category. 
+    * The fields are: name - category - created_at - updated_at - image - price - description - color - size - color
+
+4. Category Model
+    * It describes the category and has one-to-many relationship with the product
+    * The fields are: id - name
+
+4. Order Model
+    * It describes the order and has many-to-one relationship with the user
+    * The fields are: created_at - total_price - customer - delivery_place  
+
+5. Order_Product Model
+    * Its many-to-many relationship between the order and the product
+    * The fields are: product - order - count - price - total_price  
+---
+
