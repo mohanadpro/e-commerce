@@ -73,3 +73,36 @@ An e-commerce backend is a backend system that to buy products over the internet
 ### Database Scheme
 [Database Scheme](documentation/Entity%20Diagram/E-commerce.png)
 
+## Deployment and Local Developement
+
+Live deployment can be found on this [EBuy](https://ebuy-17fcffc62fb3.herokuapp.com/)
+
+### Local Developement
+
+#### How to Fork
+1. Log in(or Sign Up) to Github
+2. Go to repository for this project [E-Commerce Backend](https://github.com/mohanadpro/e-commerce)
+3. Click the fork button in the top right corner
+
+#### How to Clone
+1. Log in(or Sign Up) to Github
+2. Go to repository for this project [E-Commerce](https://github.com/mohanadpro/e-commerce)
+3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+5. Type the following command in the terminal (after the git clone you will need to paste the link you copied in step 3 above)
+6. Set up a virtual environment (this step is not required if you are using the Code Institute Template in GitPod as this will already be set up for you).
+7. Install the packages from the requirements.txt file - run Command pip3 install -r requirements.txt
+8. To run the app type python3 manage.py runserver
+
+### Deploy to Heroku 
+    1. Create a Heroku account if you don't already have one here [Heroku](https://dashboard.heroku.com/).
+    2. Create a new Heroku application on the following page here New [Heroku App](https://dashboard.heroku.com/apps)
+    3. Go to the Deploy tab
+    4. Link your GitHub account and connect the application to the repository you created.
+    5. Go to the Settings tab
+    6. Click "Add buildpack"
+    7. Add the Python buildpacks in the following order
+    8. Click Reveal Config Vars
+    9. Add Config Vars
+    10. Click Deploy Branch
+    11. Click View to launch the application inside a web page.
