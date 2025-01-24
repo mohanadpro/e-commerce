@@ -7,7 +7,9 @@ An e-commerce backend is a backend system that to buy products over the internet
 * [Databases Used](#databases-used)
 * [Frameworks Used](#frameworks-used)
 * [Programs Used](#programs-used)
-
+### [Design](#design-1)
+* [Data Model](#data-models)
+* [Database Scheme](#database-scheme)
 ### [Deployment and Local developement](#deployment-and-local-developement-1)
 * [Local Developement](#local-developement)
 * [Postgress Database](#postgress-database)
