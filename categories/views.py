@@ -6,6 +6,7 @@ from .serializers import CategorySerializer
 from e_commerce.permissions import IsOwnerOrReadOnly
 # Create your views here.
 
+
 class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -20,4 +21,3 @@ class CategoryDetails(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     queryset = Category.objects.all()
-
