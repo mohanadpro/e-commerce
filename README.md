@@ -94,6 +94,17 @@ Live deployment can be found on this [EBuy](https://ebuy-17fcffc62fb3.herokuapp.
 7. Install the packages from the requirements.txt file - run Command pip3 install -r requirements.txt
 8. To run the app type python3 manage.py runserver
 
+
+### Postgress Database
+* The storage of the database is provided from the Code institut
+
+### Cloudinary
+The website is using [Cloudinary](https://cloudinary.com/)
+1. For Primary interest, you can choose Programmable Media for image and video API.
+2. Optional: edit your assigned cloud name to something more memorable.
+3. On your Cloudinary Dashboard, you can copy your API Environment Variable.
+4. Be sure to remove the CLOUDINARY_URL= as part of the API value; this is the key.
+
 ### Deploy to Heroku 
     1. Create a Heroku account if you don't already have one here [Heroku](https://dashboard.heroku.com/).
     2. Create a new Heroku application on the following page here New [Heroku App](https://dashboard.heroku.com/apps)
