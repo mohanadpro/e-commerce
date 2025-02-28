@@ -9,7 +9,8 @@ from e_commerce.permissions import IsOwnerOrReadOnly
 
 class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
 
     filterset_class = CategoryFilter
 
@@ -18,6 +19,7 @@ class CategoryList(generics.ListCreateAPIView):
 
 class CategoryDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
 
     queryset = Category.objects.all()
