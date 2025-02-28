@@ -1,11 +1,11 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.response import Response
 from .models import Order
 from .models import Order_Product
 from .serializers import OrderSerializer, OrderDetailsSerializer
-from e_commerce.permissions import IsOwner, IsOwnerOrders
+from e_commerce.permissions import IsOwner, IsAdminOrReadOnly, IsOwnerOrReadOnly, IsAdminOrOwner
 import json
-
+from rest_framework import status
 import os
 from email.message import EmailMessage
 from email.mime.text import MIMEText
@@ -100,16 +100,22 @@ def create_email_body(delivery_place, user, order_id, total_price, products):
     return body
 
 
+class OrderlistAllOrders(generics.ListCreateAPIView):
+    permission_classes = [IsAdminOrReadOnly]
+    serializer_class = OrderSerializer
+    queryset = Order.objects.filter(is_delivered=False)
+
+
 # Create your views here.
 class OrderList(generics.ListCreateAPIView):
-    permission_classes = [IsOwner]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = OrderSerializer
 
     def list(self, request):
         try:
-            print(self.request.user)
+
             if self.request.user == 'AnonymousUser':
-                data = {'message': 'Payment has been done successfully... '}
+                data = {'message': 'User is not authorized '}
                 return Response(data, status=401)
             else:
                 queryset = Order.objects.filter(customer=self.request.user)
@@ -119,17 +125,16 @@ class OrderList(generics.ListCreateAPIView):
             data = {'message': 'error exception '}
             return Response(data, status=401)
 
+
+
     def perform_create(self, serializer):
         if serializer.is_valid():
+            
             order = serializer.save()
             cart = self.request.POST.get('cart')
             total_price = self.request.POST.get('total_price')
-            delivery_place_temp = json.loads(self.request.POST.get('delivery_place'))
-            delivery_place = f"""
-                        {delivery_place_temp['name']} <br>
-                         {delivery_place_temp['street']} {delivery_place_temp['street_number']} <br>
-                         {delivery_place_temp['city']} , {delivery_place_temp['zipcode']} <br>
-                    """ 
+            email = self.request.POST.get('email')
+            delivery_place = self.request.POST.get('delivery_place')
             products = json.loads(cart)
             for prod in products:
                 try:
@@ -142,16 +147,28 @@ class OrderList(generics.ListCreateAPIView):
                         print('serializer is not valid')
                 except Exception as ex:
                     print(str(ex))
-            if delivery_place_temp['email']!="":
-                body = create_email_body(delivery_place, delivery_place_temp['name'], order.id, total_price, products)
-                sendEmail(body, delivery_place_temp['email'])
+            if email != "":
+                body = create_email_body(delivery_place,'', order.id, total_price, products)
+                sendEmail(body, email)
 
 class OrderDetails(generics.ListCreateAPIView):
     serializer_class = OrderDetailsSerializer
-    permission_classes = [IsOwnerOrders]
+    permission_classes = [IsAdminOrOwner]
 
     def get(self, request, *args, **kwargs):
         order_id = self.kwargs['pk']
         queryset = Order_Product.objects.filter(order=order_id)
         serializer = OrderDetailsSerializer(queryset, many=True)
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        try:
+            order_id = self.kwargs['pk']
+            order = Order.objects.get(pk=order_id)
+        except Order.DoesNotExist:
+            return Response({"detail": "Order not found."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = OrderSerializer(order, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
