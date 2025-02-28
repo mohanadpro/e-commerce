@@ -28,9 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
-        'rest_framework.authentication.SessionAuthentication'
-        if 'DEV' in os.environ
-        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
@@ -63,13 +61,13 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEBUG' in os.environ
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     '3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net',
     '8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net',
-    'localhost',
+    '127.0.0.1',
 ]
 
         # os.environ.get('CLIENT_ORIGIN')
@@ -106,7 +104,8 @@ INSTALLED_APPS = [
     'categories',
     'products',
     'orders',
-    'payment'
+    'payment',
+    'accounts'
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -148,10 +147,7 @@ CSRF_TRUSTED_ORIGINS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': ({
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    } if 'DEV' in os.environ else dj_database_url.parse(
+    'default': (dj_database_url.parse(
         os.environ.get('DATABASE_URL')
     ))
 }
@@ -202,4 +198,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID")
 PAYPAL_SECRET = os.environ.get("PAYPAL_CLIENT_SECRET")
-PAYPAL_WEBHOOK_ID = os.environ.get("PAYPAL_WEBHOOK_ID")
