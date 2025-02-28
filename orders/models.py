@@ -9,6 +9,7 @@ class Order(models.Model):
     total_price = models.FloatField()
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_place = models.CharField(max_length=250, blank=True)
+    is_delivered = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']

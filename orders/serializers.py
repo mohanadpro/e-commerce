@@ -8,7 +8,8 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'created_at',
             'customer', 'total_price',
-            'delivery_place'
+            'delivery_place',
+            'is_delivered'
             ]
 
 
