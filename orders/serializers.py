@@ -3,13 +3,16 @@ from .models import Order, Order_Product
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    customer_name = serializers.ReadOnlyField(source='customer.username')
+
     class Meta:
         model = Order
         fields = [
             'id', 'created_at',
             'customer', 'total_price',
             'delivery_place',
-            'is_delivered'
+            'is_delivered',
+            'customer_name'
             ]
 
 
