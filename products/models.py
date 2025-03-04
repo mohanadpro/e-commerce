@@ -60,10 +60,10 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(
-        upload_to='images/', default='../product_defult_name_image_ufzxtf'
+        upload_to='images/', default='../product_defult_name_image_ufzxtf', blank=True
     )
     price = models.FloatField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     color = models.CharField(max_length=35, choices=colors, blank=True)
     size = models.CharField(max_length=35, choices=sizes, blank=True)
     genders = models.CharField(max_length=35, choices=genders, blank=True)
