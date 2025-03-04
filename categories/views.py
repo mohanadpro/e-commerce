@@ -3,14 +3,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .filters import CategoryFilter
 from .models import Category
 from .serializers import CategorySerializer
-from e_commerce.permissions import IsOwnerOrReadOnly
+from e_commerce.permissions import IsAdminOrReadOnly
 # Create your views here.
 
 
 class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsAdminOrReadOnly]
 
     filterset_class = CategoryFilter
 
