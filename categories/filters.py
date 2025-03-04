@@ -8,3 +8,10 @@ class CategoryFilter(django_filters.FilterSet):
         fields = {
             'name' : ['iexact','contains']
         }
+        filter_overrides = {
+        models.CharField: {
+            'filter_class': django_filters.CharFilter,
+            'extra': lambda f: {
+                'lookup_expr': 'icontains',
+            },
+        },}
