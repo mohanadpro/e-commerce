@@ -9,7 +9,6 @@ from e_commerce.permissions import IsAdminOrReadOnly
 class ProductList(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     permission_classes = [IsAdminOrReadOnly]
-    # permission_classes = [permissions.AllowAny]
     filter_backends = [
         DjangoFilterBackend
     ]
@@ -21,7 +20,7 @@ class ProductList(generics.ListCreateAPIView):
 
 class ProductDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
-    # permission_classes = [permissions.AllowAny]
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [permissions.AllowAny]
+    # permission_classes = [IsAdminOrReadOnly]
 
     queryset = Product.objects.all()
