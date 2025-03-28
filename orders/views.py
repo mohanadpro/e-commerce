@@ -113,7 +113,6 @@ class OrderList(generics.ListCreateAPIView):
 
     def list(self, request):
         try:
-
             if self.request.user == 'AnonymousUser':
                 data = {'message': 'User is not authorized '}
                 return Response(data, status=401)
@@ -125,6 +124,12 @@ class OrderList(generics.ListCreateAPIView):
             data = {'message': 'error exception '}
             return Response(data, status=401)
 
+    def delete(self, request, pk, format=None):
+        order = self.get_object(pk)
+        if order is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        order.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
     def perform_create(self, serializer):
@@ -150,6 +155,12 @@ class OrderList(generics.ListCreateAPIView):
             if email != "":
                 body = create_email_body(delivery_place,'', order.id, total_price, products)
                 sendEmail(body, email)
+
+class OrderDestroy(generics.RetrieveDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+
 
 class OrderDetails(generics.ListCreateAPIView):
     serializer_class = OrderDetailsSerializer
