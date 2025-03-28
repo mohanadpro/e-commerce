@@ -67,3 +67,5 @@ class Product(models.Model):
     color = models.CharField(max_length=35, choices=colors, blank=True)
     size = models.CharField(max_length=35, choices=sizes, blank=True)
     genders = models.CharField(max_length=35, choices=genders, blank=True)
+    class Meta:
+        ordering = ['-created_at']
