@@ -141,7 +141,8 @@ WSGI_APPLICATION = 'e_commerce.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://3000-mohanadpro-ecommercefro-jp7w9l0dvn2.ws.codeinstitute-ide.net/",
-    "https://8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net"
+    "https://8000-mohanadpro-ecommerce-u0r924by40r.ws.codeinstitute-ide.net",
+    "https://127.0.0.1:3000"
     ]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
