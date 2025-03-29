@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from .models import Order
 from .models import Order_Product
 from .serializers import OrderSerializer, OrderDetailsSerializer
-from e_commerce.permissions import IsOwner, IsAdminOrReadOnly, IsOwnerOrReadOnly, IsAdminOrOwner
+from e_commerce.permissions import IsOwner, IsAdminOrReadOnly, IsOwnerOrReadOnly, IsAdminOrOwner, IsUserOwnerOrReadOnly
 import json
 from rest_framework import status
 import os
@@ -108,7 +108,7 @@ class OrderlistAllOrders(generics.ListCreateAPIView):
 
 # Create your views here.
 class OrderList(generics.ListCreateAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsUserOwnerOrReadOnly]
     serializer_class = OrderSerializer
 
     def list(self, request):
@@ -157,7 +157,7 @@ class OrderList(generics.ListCreateAPIView):
                 sendEmail(body, email)
 
 class OrderDestroy(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsUserOwnerOrReadOnly]
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
 
