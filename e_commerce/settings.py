@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 import re
 import dj_database_url
+import datetime
+from datetime import timedelta
+
 
 if os.path.exists('env.py'):
     import env
@@ -49,6 +52,16 @@ JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),  # Set token expiration to 1 hour
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=1),  # Refresh token expiration (optional)
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Default is 5 minutes, here it will be 1 hour
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'e_commerce.serializers.CurrentUserSerializer'
